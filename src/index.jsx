@@ -287,13 +287,22 @@ class Scroller extends Component {
     }
 
     this.horizontalScrollerNode = this.horizontalScrollerNode || thisNode.querySelector('.z-horizontal-scroller')
+    this.horizontalScrollbarNode = this.horizontalScrollbarNode || thisNode.querySelector('.z-horizontal-scrollbar')
 
     const dom = this.horizontalScrollerNode
+    const dom1 = this.horizontalScrollbarNode
 
     if (dom){
       const height = dom.style.height
-
       dom.style.height = height == '0.2px'? '0.1px': '0.2px'
+    }
+
+    if (dom1){
+      if (dom1.offsetWidth >= this.props.scrollWidth) {
+        dom1.style.pointerEvents = 'none';
+      } else {
+        dom1.style.pointerEvents = 'auto';
+      }
     }
   }
 
